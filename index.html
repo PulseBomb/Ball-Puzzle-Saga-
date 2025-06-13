@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-lang-key="game_title">Ball Puzzle Saga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="/manifest.json" />
+</head>
+<body>  <div id="loading-message" class="loading-overlay"> <div class="loading-spinner"></div>
+      <p data-lang-key="loading_message"></p>
+  </div>
+  <div class="game-header">  
+    <div class="stats-container">  
+      <div class="stat-item" id="gold-display-container">  
+        <span class="material-symbols-outlined">payments</span> <span data-lang-key="gold_label">Gold:</span>  
+        <span id="gold-display">0</span>  
+      </div>  
+    </div>
+
+
+ <div class="stats-container stats-right">
+      <div class="stat-item">
+        <span class="material-symbols-outlined">bar_chart</span> <span data-lang-key="level_label">Level:</span>
+        <span id="level-display">1</span>
+      </div>
+  
+<h1><span class="gradient-title" data-lang-key="game_title">Ball Puzzle Saga</span></h1><button class="quest-btn" id="quests-button" title="View Quests" data-lang-key="quests_button">
+    <span class="material-symbols-outlined">assignment</span> <span data-lang-key="quests_button">Quests</span>
+  </button>
+  
+
+    <button id="notifications-button" class="game-button">
+      <i class="fas fa-bell"></i> <span id="unread-notifications-count" class="badge">0</span>
+  </button>
+    <div id="notifications-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-button" id="close-notifications-modal" data-lang-key="close_button_text">&times;</span> <h2 data-lang-key="notifications_title">Notifications</h2> <div id="notifications-list">
+              <p data-lang-key="no_current_notifications">No new notifications.</p> </div>
+      </div>
+  </div>
+
+
+  <button id="rankings-button" class="game-button" title="View Rankings" data-lang-key="rankings">
+      <span class="material-symbols-outlined">leaderboard</span> <span data-lang-key="rankings_text">Rankings</span>
+  </button>
+  <div id="rankings-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-rankings-modal" class="close-button">×</span>
+      <h2 data-lang-key="top10_players">Top  10 Players</h2>
+      <ul id="rankings-list"></ul>
+    </div>
+  </div>
+  <button class="settings-btn" id="settings-button" title="Game Settings" data-lang-key="settings_button">
+    <span class="material-symbols-outlined">settings</span> <span data-lang-key="settings_button">Settings</span>
+  </button>
+</div>
+
+  </div>  <div class="top-controls-panel">
+      <button id="undo-button" title="Undo" data-lang-key="undo_button">
+          <span class="material-symbols-outlined">undo</span> <span data-lang-key="undo_button">Undo</span>
+          <span class="cost-display">(<span id="undo-cost-display">15</span>)</span> </button>
+      <button id="reset-button" title="Reset" data-lang-key="reset_button">
+          <span class="material-symbols-outlined">restart_alt</span> <span data-lang-key="reset_button">Reset</span>
+      </button>
+      <button id="hint-button" title="Hint" data-lang-key="hint_button">
+          <span class="material-symbols-outlined">lightbulb</span> <span data-lang-key="hint_button">Hint</span>
+          <span class="cost-display">(<span id="hint-cost-display"></span>)</span>
+      </button>
+      <button class="powerup-btn" id="buy-tube-button" title="Extra Tube" data-lang-key="buy_tube_button">
+          <span class="material-symbols-outlined">science</span> <span data-lang-key="buy_tube_button">Tube</span>
+          <span class="cost-display">(<span id="buy-tube-cost-display"></span>)</span>
+      </button>
+  </div>  <div id="achievement-badge" class="achievement-badge"></div>  <div id="quests-popup" class="popup hidden">
+    <button id="close-quests-button" class="close-btn" title="Close Quests" data-lang-key="close_button_text"><span class="material-symbols-outlined">close</span></button> <h2 data-lang-key="your_quests_title"><span class="material-symbols-outlined">assignment</span> <span data-lang-key="your_quests_title_text">Your Quests</span></h2> <div class="quests-section">
+      <h3 data-lang-key="daily_quests_title"><span class="material-symbols-outlined">calendar_today</span> <span data-lang-key="daily_quests_title_text">Daily Quests</span></h3> <div id="daily-quests" class="quests-list"></div>
+    </div>
+    <div class="quests-section">
+      <h3 data-lang-key="weekly_quests_title"><span class="material-symbols-outlined">calendar_month</span> <span data-lang-key="weekly_quests_title_text">Weekly Quests</span></h3> <div id="weekly-quests" class="quests-list"></div>
+    </div>
+  </div>  <button id="skip-button" class="game-button">
+  <span class="material-symbols-outlined">skip_next</span>
+  <span data-lang-key="skip_button">Skip</span>
+  <span class="gold-value">(500)</span>
+</button>  <div id="settings-popup" class="popup hidden">
+    <button id="close-settings-button" class="close-btn" title="Close Settings" data-lang-key="close_settings_button"><span class="material-symbols-outlined">close</span></button>
+    <h2 data-lang-key="settings_title"><span class="material-symbols-outlined">settings</span> <span data-lang-key="settings_title_text">Settings</span></h2>
+<button id="shop-button" class="game-button" onclick="openShopPopup()" title="Shop (Coming Soon)">
+  <span class="material-symbols-outlined">store</span>
+  <span data-lang-key="shop_button_text">Shop</span>
+(soon)</button>
+<div class="setting-item">
+  <label for="username-input" data-lang-key="username_label">Username:</label>
+  <input type="text" id="username-input" maxlength="20" placeholder="Enter your username (max 20 characters)">
+  <button id="save-username-button" class="toggle-btn" data-lang-key="save_button_text">Save Name</button>
+</div>
+<div id="referral-box">
+  <button id="copy-referral-btn">Copy Referral Link(soon)</button>
+</div>
+    <div class="setting-item">
+      <label for="music-volume-slider" data-lang-key="music_volume_label">Music Volume:</label>
+      <input type="range" id="music-volume-slider" min="0" max="100">
+    </div>
+    <div class="setting-item">
+      <label for="sfx-volume-slider" data-lang-key="sfx_volume_label">SFX Volume:</label>
+      <input type="range" id="sfx-volume-slider" min="0" max="100">
+    </div>
+    <div class="setting-item">
+      <button id="music-toggle-button" class="toggle-btn" title="Toggle Music On/Off"><span class="material-symbols-outlined">volume_up</span> <span data-lang-key="toggle_music_on">Music ON</span></button>
+    </div>
+    <div class="setting-item">
+      <button id="sfx-toggle-button" class="toggle-btn" title="Toggle SFX On/Off"><span class="material-symbols-outlined">volume_up</span> <span data-lang-key="toggle_sfx_on">SFX ON</span></button>
+    </div>
+    <div class="setting-item">
+        <label data-lang-key="language_label">Language:</label>
+        <button id="language-toggle-button" class="toggle-btn">
+            <span class="material-symbols-outlined">language</span> <span data-lang-key="current_language">English</span>
+        </button>
+    </div>
+    <div class="setting-item">
+      <span id="player-id" data-lang-key="player_id_label">Your ID: N/A</span>
+    </div>
+  </div>  <div id="game-container">
+    <div id="message" class="game-message" data-lang-key="initial_message"></div>
+    <div id="tubes-container"></div>
+  </div><audio id="backgroundMusic" src="assets/sounds/background_music.mp3" preload="auto" loop></audio>
+
+  <script type="module" src="js/gallery.js"></script>  <script type="module" src="js/main.js"></script></body>
+</html>

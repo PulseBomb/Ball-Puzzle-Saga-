@@ -1,0 +1,95 @@
+{
+  "name": "Ball Puzzle Saga",
+  "short_name": "Ball Puzzle",
+  "version": "1.0",
+  "description": "A smart and fun puzzle game! Sort the balls, solve levels, earn rewards, and compete with top players.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B1F4D",
+  "theme_color": "#0a74da",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "com.pulsebomb.ballpuzzlesaga",
+  "developer": {
+    "name": "Pulse Bomb",
+    "url": "https://ballpuzzlesaga-pulsebomb.netlify.app"
+  },
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/cLcS9BJX/1749146439608.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.postimg.cc/cLcS9BJX/1749146439608.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://i.postimg.cc/7GmJgNbc/IMG-20250608-182007.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/ph2nhSVz/IMG-20250608-182020.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/tsx6LPmZ/IMG-20250608-184448.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/30N49Dvw/IMG-20250608-184515.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Play Puzzle",
+      "short_name": "Play",
+      "description": "Start a new puzzle now",
+      "url": "/index.html",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/cLcS9BJX/1749146439608.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+ballpuzzle",
+      "url": "/index.html?link=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred"
+}

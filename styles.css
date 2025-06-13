@@ -1,0 +1,2631 @@
+/* ---------------------------------- Global Styles - Mobile-First & Anime Style - Lighter Version ---------------------------------- */
+:root {
+    /* الألوان: مريحة ومناسبة للتباين */
+    --color-primary: #64B5F6; /* أزرق سماوي جذاب */
+    --color-secondary: #64B5F6; /* أخضر زمردي - تم تصحيح اللون */
+    --color-accent: #e74c3c; /* أحمر نابض */
+    --color-background: #34495e; /* خلفية داكنة موحدة */
+    --color-surface: #34495e; /* سطح داكن */
+    --color-text: #FFFFFF; /* نص فاتح */
+    --color-light-gray: #bdc3c7; /* رمادي فاتح */
+
+    /* متغيرات RGB للشفافية */
+    --color-primary-rgb: 100, 181, 246; /* تم تحديث قيم RGB لتتناسب مع #64B5F6 */
+    --color-secondary-rgb: 46, 204, 113;
+    --color-accent-rgb: 231, 76, 60;
+    --color-background-rgb: 44, 62, 80;
+    --color-surface-rgb: 52, 73, 94;
+    --color-text-rgb: 255, 255, 255; /* تم تحديث قيم RGB لتتناسب مع #FFFFFF */
+
+    /* أحجام للهواتف الصغيرة */
+    --tube-width-base: 50px; /* أصغر لشاشات صغيرة */
+    --tube-height-base: 160px; /* ارتفاع مناسب */
+    --ball-size-base: 40px; /* كرات أصغر */
+    --gap-base: 0.6rem; /* مسافات صغيرة */
+    --border-radius: 8px; /* زوايا أقل حدة */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1); /* ظل أخف */
+    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.2); /* ظل أخف */
+
+    /* NEW: Cracked Balls Theme Colors */
+    --cracked-tube-bg: rgba(var(--color-text-rgb), 0.05); /* خلفية أنابيب شفافة ومحايدة أكثر زجاجية */
+    --cracked-tube-border: rgba(var(--color-text-rgb), 0.1); /* حدود أرق وأكثر شفافية */
+    --cracked-line-color-light: rgba(var(--color-text-rgb), 0.02); /* لخطوط الأنبوب الخفيفة */
+    --cracked-ball-shadow-glow: rgba(var(--color-text-rgb), 0.5); /* توهج الكرات أقوى قليلاً */
+    /* اقتراحات إضافية: */
+    --cracked-glass-overlay: rgba(var(--color-text-rgb), 0.03); /* طبقة زجاجية علوية للانعكاس */
+    --cracked-fracture-color: rgba(var(--color-text-rgb), 0.3); /* لون الشقوق نفسها - تم توحيده */
+    --cracked-shadow-dark: rgba(0, 0, 0, 0.2); /* ظل أغمق للعناصر */
+    --cracked-highlight-specular: rgba(255, 255, 255, 0.8); /* تمييز ضوئي قوي للأسطح اللامعة */
+
+    /* NEW: Base Ball Colors (soft and attractive) */
+/* إخفاء جميع ظلال الصندوق من كل العناصر بشكل افتراضي */
+* {
+  box-shadow: none !important;
+}
+
+/* تطبيق الظل الأحمر على "الأنبوب" فقط عند التركيز (النقر أو التنقل بلوحة المفاتيح) */
+/* استبدل 'input' بالمحدد الصحيح لعنصر الأنبوب الخاص بك (مثل .my-tube-class أو #tube-id) */
+input:focus,
+input:focus-visible,
+input:active {
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* ظل أحمر ساطع */
+}
+
+
+    /* NEW: Popup specific colors - lighter */
+    --popup-bg-color: rgba(var(--color-surface-rgb), 0.85); /* خلفية البوب أب */
+    --popup-border-color: var(--color-primary); /* حدود البوب أب */
+    --popup-header-color: var(--color-primary); /* لون عنوان البوب أب */
+    --popup-item-bg: rgba(var(--color-primary-rgb), 0.08); /* خلفية العناصر داخل البوب أب */
+    --popup-item-border: rgba(var(--color-primary-rgb), 0.2); /* حدود العناصر داخل البوب أب */
+}
+
+/* ---------------------------------- Ball Locked Styles ---------------------------------- */
+.ball.locked {
+    position: relative; /* Needed for absolute positioning of the icon */
+    overflow: hidden; /* Hide anything outside the ball */
+    border: 3px solid #FFD700; /* لون ذهبي مثلاً */
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.7); /* ظل ذهبي */
+}
+
+.ball.locked::before {
+    content: '\F023'; /* Unicode for lock icon from Material Symbols */
+    font-family: 'Material Symbols Outlined'; /* Ensure you have Material Symbols font linked */
+    font-size: 24px; /* Adjust size as needed */
+    color: rgba(255, 255, 255, 0.8); /* White color, slightly transparent */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the icon */
+    z-index: 1; /* Make sure the icon is above the ball color */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add a slight shadow for readability */
+    pointer-events: none; /* لمنع الأيقونة من منع النقرات على الكرة */
+}
+.currency-display {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(145deg, #2b2f3a, #3a3f4d);
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.05),
+                0 2px 6px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: default;
+    user-select: none;
+}
+
+.currency-display:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+.currency-display svg,
+.currency-display img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.5));
+    transition: transform 0.2s;
+}
+
+.currency-display:hover svg,
+.currency-display:hover img {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+#crystal-display {
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0.5px;
+}
+/* Optional: a subtle pattern or texture for locked balls */
+.ball.locked::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.1) 0,
+        rgba(0, 0, 0, 0.1) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    opacity: 0.7; /* Make the pattern slightly transparent */
+    z-index: 0; /* Keep pattern below the lock icon */
+}
+
+/* Hint for tubes that have locked balls (not movable) */
+.tube.locked-hint {
+    border: 2px dashed #f44336; /* Red dashed border */
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.7); /* Red glow */
+}
+
+/* ---------------------------------- General Element Styles ---------------------------------- */
+/* أنا وضعتها هنا مؤقتاً للتوضيح، يفضل نقلها إلى styles.css */
+.game-button {
+    background-color: #2A5298; /* لون زر افتراضي */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+/* إضافة أنماط لضمان عدم تجاوز النصوص */
+.stat-item {
+  white-space: nowrap; /* يمنع التفاف النص */
+  overflow: hidden;    /* يخفي أي نص يتجاوز الحاوية */
+  text-overflow: ellipsis; /* يضيف علامات الحذف (...) للنص المخفي */
+  max-width: 150px; /* يمكن تعديل هذا العرض حسب الحاجة */
+}
+
+/* أسلوب خاص للذهب */
+#gold-display-container {
+  color: gold; /* لون ذهبي */
+  display: flex; /* لعرض الأيقونة والنص في سطر واحد */
+  align-items: center; /* لمحاذاة رأسية */
+}
+
+/* أنماط جديدة للوحة التحكم */
+.top-controls-panel {
+  display: flex;
+  justify-content: center; /* توسيط العناصر */
+  gap: 15px; /* مسافة بين الأزرار */
+  margin-top: 10px; /* مسافة من البانر العلوي */
+  margin-bottom: 20px; /* مسافة من حاوية اللعبة */
+  flex-wrap: wrap; /* السماح بتجاوز العناصر للأسفل في الشاشات الصغيرة */
+}
+
+.top-controls-panel button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #b3b3ff; /* لون أخضر جذاب */
+  color: #3F51B5;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.top-controls-panel button:hover {
+  background-color: #6A0DAD;
+}
+
+.top-controls-panel button .cost-display {
+    font-weight: bold;
+    color: yellow; /* لون مميز للسعر */
+    font-size: 0.9em;
+}
+
+#notifications-button {
+    position: relative; /* عشان الـ badge يكون مكانه صح */
+}
+
+.badge {
+    background-color: #f44336; /* لون أحمر للإشعارات الجديدة */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: none; /* هيظهر بس لو فيه إشعارات مش مقروءة */
+}
+.gold-value {
+    color: gold; /* أو يمكنك استخدام كود لوني مثل #FFD700 */
+    margin-left: 5px; /* لإضافة مسافة صغيرة بين كلمة "Skip" والقيمة */
+    font-weight: bold; /* لجعل النص سميكًا إن أردت */
+}
+
+/* إذا كنت تريد تعديل حجم الخط أو أي شيء آخر، يمكنك إضافته هنا */
+
+/* ---------------------------------- Leaderboard Modal - Refined & Themed ---------------------------------- */
+
+/* Modal Overlay - Ensures full screen dark overlay with smooth transition */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Slightly darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease; /* Smoother transition */
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Content - Main popup window */
+.modal-content {
+    background: var(--popup-bg-color); /* Uses popup background variable for consistency */
+    padding: 2.2rem; /* Increased padding for more breathing room */
+    border-radius: var(--border-radius); /* Consistent border-radius from root */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7); /* Deeper shadow */
+    width: 90%;
+    max-width: 600px; /* Slightly wider max-width for better display on larger screens */
+    position: relative;
+    color: var(--color-text); /* Consistent text color */
+    text-align: center;
+    transform: translateY(-30px) scale(0.95); /* Initial slightly smaller and higher position */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; /* Bouncy scale-in effect */
+    border: 2px solid var(--popup-border-color); /* Consistent border from popup vars */
+    backdrop-filter: blur(10px) brightness(0.9); /* Slightly more subtle blur for modals */
+}
+
+.modal-overlay.show .modal-content {
+    transform: translateY(0) scale(1); /* Returns to original position and scale */
+}
+
+/* Modal Close Button */
+.modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--color-light-gray); /* Consistent color */
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px; /* Larger hit area */
+    border-radius: 50%;
+    transition: all 0.3s ease; /* Smoother transition for hover/active */
+    line-height: 1; /* Ensures icon is centered */
+}
+
+.modal-close-button:hover {
+    color: var(--color-accent); /* Accent color on hover */
+    background-color: rgba(var(--color-text-rgb), 0.1); /* Subtle background highlight */
+    transform: rotate(90deg) scale(1.1); /* More pronounced rotation */
+}
+/* في ملف styles.css */
+
+/* ------------------------------------- */
+/* تنسيقات شاشة ومؤشر التحميل */
+/* ------------------------------------- */
+
+/* #message هو نفسه #loading-message */
+/* هذا التنسيق سيجعل شاشة التحميل تغطي الشاشة بالكامل */
+#message.game-loading-overlay {
+    position: fixed; /* يثبت العنصر في الشاشة */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* خلفية سوداء شبه شفافة تغطي كل شيء */
+    color: #fff; /* لون النص أبيض */
+    font-size: 1.8em; /* حجم خط أكبر لرسالة التحميل */
+    display: flex; /* استخدام Flexbox لتوسيط المحتوى */
+    flex-direction: column; /* ترتيب العناصر عمودياً (أيقونة ثم نص) */
+    justify-content: center; /* توسيط عمودي */
+    align-items: center; /* توسيط أفقي */
+    z-index: 1000; /* التأكد من أنها فوق جميع العناصر الأخرى */
+    pointer-events: all; /* منع التفاعل مع عناصر الخلفية أثناء التحميل */
+    opacity: 1; /* التأكد من أنها مرئية بالكامل عند الظهور */
+    transition: opacity 0.5s ease-in-out; /* انتقال سلس للظهور والاختفاء */
+    text-align: center; /* توسيط النص داخل العنصر */
+    padding: 20px; /* بعض المسافة الداخلية */
+    box-sizing: border-box; /* لضمان أن البادينج لا يوسع العنصر عن 100% */
+}
+/* في ملف style.css */
+
+/* لإضافة مؤشر تحميل دوار (سبينر) */
+/* سنستخدم pseudo-element وإضافة أيقونة أو رمز تعبيري */
+#message.game-loading-overlay::before {
+    content: '⏳'; /* يمكن استبداله بأيقونة من Material Symbols مثل 'autorenew' أو 'progress_activity' */
+    /* إذا أردت استخدام Material Symbol icon بدلاً من الرمز التعبيري:
+       content: '\e8d9'; // كود أيقونة 'autorenew'
+       font-family: 'Material Symbols Outlined'; // تأكد من استيراد الخط في HTML
+       font-weight: normal;
+       font-style: normal;
+       line-height: 1;
+       text-transform: none;
+       white-space: nowrap;
+       word-wrap: normal;
+       direction: ltr;
+       -webkit-font-feature-settings: 'liga';
+       -webkit-font-smoothing: antialiased;
+    */
+    font-size: 3.5em; /* حجم أيقونة السبينر */
+    margin-bottom: 25px; /* مسافة بين السبينر والنص */
+    color: #4CAF50; /* لون جميل للسبينر */
+    animation: spin 1.5s linear infinite; /* تطبيق حركة الدوران */
+}
+
+/* تعريف حركة الدوران (keyframes) */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* التأكد من أن التنسيقات العادية لـ #message لا تتعارض مع تنسيق شاشة التحميل */
+/* هذا يعيد تعيين أي خصائص قد تتعارض */
+#message.game-loading-overlay.info-message,
+#message.game-loading-overlay.success-message,
+#message.game-loading-overlay.error-message {
+    top: 0;
+    left: 0;
+    transform: none; /* إزالة translateX */
+    padding: 0; /* إزالة البادينج العادي */
+    border-radius: 0; /* إزالة الـ border-radius العادي */
+    /* خصائص flexbox ستبقى كما هي من #message.game-loading-overlay */
+}
+
+/* ------------------------------------- */
+/* نهاية تنسيقات شاشة ومؤشر التحميل */
+/* ------------------------------------- */
+
+/* Modal Title */
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 25px; /* More space below title */
+    color: var(--popup-header-color); /* Consistent header color */
+    font-size: 2em; /* Larger title */
+    text-shadow: 0 0 12px rgba(var(--color-secondary-rgb), 0.7); /* Stronger glow for titles */
+}
+/* Leaderboard Tabs */
+.leaderboard-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px; /* More space below tabs */
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.2); /* Lighter, more subtle bottom border */
+}
+
+.leaderboard-tab {
+    background: none;
+    border: none;
+    padding: 12px 20px; /* Larger tabs */
+    font-size: 1.15em; /* Slightly larger text */
+    cursor: pointer;
+    color: var(--color-text);
+    transition: all 0.25s ease;
+    border-radius: 8px 8px 0 0; /* More rounded top corners */
+    margin: 0 5px;
+    font-weight: 600; /* Bolder text for tabs */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.leaderboard-tab:hover:not(.active) {
+    background-color: rgba(var(--color-text-rgb), 0.1); /* Subtle hover for non-active tabs */
+    color: var(--color-primary); /* Primary color on hover */
+}
+
+.leaderboard-tab.active {
+    background-color: var(--color-primary); /* Primary color for active tab */
+    color: #FFFFFF;
+    font-weight: bold;
+    box-shadow: 0 -3px 10px rgba(var(--color-primary-rgb), 0.4); /* Glow on active tab */
+    transform: translateY(-2px); /* Slight lift for active tab */
+}
+/* styles.css */
+
+.quest-item {
+    position: relative; /* مهم لتمكين تحديد موضع النقطة داخل العنصر */
+    /* باقي تنسيقات عنصر المهمة */
+}
+
+.quest-item .notification-dot {
+    display: none; /* مخفية بشكل افتراضي */
+    position: absolute; /* لتحديد موضعها بالنسبة لـ quest-item */
+    top: 5px; /* مسافة من أعلى */
+    right: 5px; /* مسافة من اليمين */
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    /* border: 1px solid white; /* اختياري: لإبراز النقطة */
+}
+
+.quest-item.completed .notification-dot {
+    display: block; /* أظهر النقطة الحمراء عندما تكون المهمة مكتملة */
+}
+
+/* لو عندك زر منفصل للمهام في مكان آخر بالـ UI (غير الـ quest-item نفسه) */
+/* مثال: إذا كان هناك زر في واجهة اللعبة الرئيسية يفتح قائمة المهام */
+.quests-button { /* افترض أن هذا هو الكلاس لزر المهام الرئيسي */
+    position: relative;
+    /* باقي تنسيقات زر المهام */
+}
+
+.quests-button .notification-dot {
+    display: none;
+    position: absolute;
+    top: -3px; /* ضبط الموضع ليكون فوق الزر قليلاً */
+    right: -3px;
+    width: 12px; /* قد تحتاج نقطة أكبر للزر الرئيسي */
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid var(--main-bg-color); /* لون خلفية الزر لتبدو النقطة جزءًا منه */
+}
+
+/* هذا الكلاس سيتم إضافته بواسطة الـ JS إلى الزر الرئيسي */
+.quests-button.has-completed-quests .notification-dot {
+    display: block;
+}
+/* styles.css */
+
+/* تنسيقات زر المهام الرئيسي */
+#quests-button {
+    position: relative; /* مهم جداً لوضع النقطة بشكل مطلق بداخله */
+    /* أي تنسيقات أخرى لزر المهام الخاص بك:
+       padding, background-color, color, border, border-radius, إلخ.
+       تأكد من أن الزر كبير بما يكفي ليحتوي النقطة بشكل جيد.
+    */
+    display: inline-flex; /* لترتيب الأيقونة والنص والنقطة */
+    align-items: center; /* لمحاذاة العناصر عموديا في المنتصف */
+    justify-content: center; /* لمحاذاة العناصر أفقيا في المنتصف */
+    gap: 5px; /* مسافة بين الأيقونة والنص */
+}
+
+/* النقطة الحمراء على زر المهام الرئيسي */
+#quests-button .notification-dot {
+    display: none; /* مخفية بشكل افتراضي */
+    position: absolute; /* لوضعها في الزاوية */
+    top: -5px;      /* أعلى قليلاً من الزاوية العلوية اليمنى */
+    right: -5px;    /* إلى اليمين قليلاً */
+    width: 15px;    /* حجم أكبر قليلاً لتكون مرئية على الزر */
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid var(--main-bg-color, #333); /* border بلون خلفية الصفحة/الزر لتبدو النقطة جزءًا منه */
+    z-index: 10; /* تأكد أنها فوق أي عناصر أخرى */
+}
+
+/* الكلاس الذي سيضيفه JavaScript لإظهار النقطة */
+#quests-button.has-completed-quests .notification-dot {
+    display: block; /* أظهر النقطة عندما يكون هناك مهام مكتملة */
+}
+
+/* تنسيقات النقطة داخل كل مهمة فردية في القائمة (كما ذكرنا سابقاً) */
+.quest-item {
+    position: relative;
+    /* باقي تنسيقات عنصر المهمة */
+}
+
+.quest-item .notification-dot {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.quest-item.completed .notification-dot {
+    display: block;
+}
+
+/* Leaderboard List */
+.leaderboard-list {
+    max-height: 450px; /* Increased max height */
+    overflow-y: auto;
+    padding-right: 15px; /* More padding for scrollbar */
+    padding-bottom: 10px; /* Space at bottom */
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    background-color: rgba(var(--color-surface-rgb), 0.5); /* Semi-transparent surface color */
+    padding: 12px 18px; /* More padding */
+    margin-bottom: 12px; /* More space between items */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); /* Deeper item shadow */
+    transition: all 0.25s ease-in-out;
+    border: 1px solid rgba(var(--color-text-rgb), 0.1); /* Subtle border for items */
+    position: relative; /* Needed for potential future effects */
+    
+    /* ✅ ضمان عدم التفاف العناصر الأساسية داخل الـ li */
+    flex-wrap: nowrap; 
+    white-space: nowrap; /* يمنع النص داخل الـ li من الالتفاف ككل */
+    overflow: hidden; /* يخفي أي نص يتجاوز حدود العنصر */
+    text-overflow: ellipsis; /* يضيف "..." إذا تم اقتطاع النص بسبب overflow */
+}
+
+.leaderboard-item:hover {
+    transform: translateY(-4px) scale(1.01); /* More pronounced lift and subtle scale */
+    background-color: rgba(var(--color-surface-rgb), 0.7); /* Darker on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+/* Rank Number */
+.rank-number {
+    font-size: 1.6em; /* Larger rank number */
+    font-weight: 900; /* Extra bold */
+    color: #FFD700; /* Gold for rank */
+    width: 50px; /* Fixed width for alignment */
+    text-align: left;
+    margin-right: 20px; /* More space */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex-shrink: 0; /* منع التقلص */
+}
+
+/* Player Avatar */
+.player-avatar {
+    width: 45px; /* Slightly larger avatar */
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-primary); /* Primary color border for avatar */
+    margin-right: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.4); /* Subtle glow for avatar */
+    
+    /* ✅ تحسين مظهر الأرقام داخل الأفاتار */
+    font-size: 1.4em; /* اجعل الرقم أكبر قليلاً */
+    font-weight: 900; /* اجعله أثقل/أكثر سمكًا */
+    color: #FFF; /* لون النص داخل الكرة (أبيض ليتناسب مع الخلفيات الملونة) */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* ظل نص خفيف لتحسين التباين */
+}
+
+.avatar-ball {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Ball colors will be applied via JS/inline-style */
+}
+
+/* Player Info */
+.player-info {
+    flex-grow: 1;
+    text-align: left;
+    display: flex; /* Use flexbox for player info */
+    flex-direction: column; /* Stack name and stats */
+    /* ✅ ضمان عدم التفاف player-info نفسها */
+    flex-wrap: nowrap; 
+    overflow: hidden;
+}
+
+.player-id-snippet {
+    font-weight: bold;
+    color: var(--color-secondary); /* Secondary color for ID */
+    margin-bottom: 3px; /* Less space below ID */
+    font-size: 1.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Ensure it respects parent width */
+}
+
+.player-stats {
+    font-size: 0.95em; /* Slightly larger stats */
+    color: var(--color-light-gray);
+    display: flex; /* Arrange stats horizontally */
+    gap: 8px; /* Space between stats */
+    /* ✅ الأهم: منع التفاف الإحصائيات إلى سطر جديد */
+    flex-wrap: nowrap; /* تم التغيير من 'wrap' إلى 'nowrap' */
+    overflow: hidden; /* يخفي إذا تجاوزت المحتوى */
+    text-overflow: ellipsis; /* يضيف ... إذا تم اقتطاعها */
+}
+
+.stat-level, .stat-gold {
+    margin-right: 0; /* Reset margin as gap is used */
+    display: flex;
+    align-items: center;
+    /* ✅ ضمان عدم التفاف النص داخل كل إحصائية فردية */
+    white-space: nowrap; 
+    flex-shrink: 0; /* منع هذه العناصر من التقلص أكثر من اللازم */
+}
+
+.stat-level i, .stat-gold i {
+    font-size: 0.9em; /* Smaller icons for stats */
+    margin-right: 4px;
+    color: var(--color-accent); /* Accent color for stat icons */
+}
+/* ---------------------------------- Quests Popup Specific Styles ---------------------------------- */
+
+/* --- */
+/* الأنماط الأساسية للـ Popup (تأكد من وجودها) */
+/* هذه الأنماط مهمة لتحديد كيفية ظهور الـ popup نفسه */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--popup-bg-color);
+    border: 1px solid var(--popup-border-color);
+    width: 90%;
+    max-width: 800px; /* جعل الـ popup أعرض قليلاً */
+    height: auto;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    backdrop-filter: blur(12px) brightness(0.8);
+    color: var(--color-text);
+    align-items: flex-start;
+    overflow-y: auto;
+    max-height: 90vh; /* تحديد أقصى ارتفاع للـ popup لترك مساحة للتمرير */
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%) scale(0.9);
+    pointer-events: none;
+}
+
+/* --- */
+
+/* تخصيص نافذة المهام لتكون أوسع وأكثر راحة */
+#quests-popup.popup {
+    /* هنا يمكنك إضافة أنماط خاصة لنافذة المهام إذا أردت تمييزها */
+    max-width: 850px; /* زيادة العرض لتبدو مريحة */
+    padding: 2rem; /* زيادة المسافة الداخلية للمزيد من الراحة */
+}
+
+/* عنوان نافذة المهام */
+#quests-popup h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem; /* مسافة أكبر بعد العنوان */
+    color: var(--color-primary); /* يمكنك استخدام لون أساسي للعناوين */
+}
+
+/* أقسام المهام (يومية/أسبوعية) */
+.quests-section {
+    width: 100%; /* تأكد أنها تأخذ العرض الكامل للـ popup */
+    margin-bottom: 1.5rem;
+}
+
+.quests-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-secondary); /* لون مميز لعناوين الأقسام */
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* خط فاصل خفيف */
+    padding-bottom: 0.5rem;
+}
+
+/* قائمة المهام (يومية/أسبوعية) */
+.quests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid; /* استخدام Grid لجعل المهام تظهر في أعمدة */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2-3 مهام في الصف حسب العرض */
+    gap: 1rem; /* المسافة بين المهام */
+    /* لا نحتاج لـ max-height و overflow-y هنا لأن الـ popup الأم هو الذي سيتولى التمرير */
+}
+
+/* عنصر المهمة الواحدة - لتكون أصغر وعريضة ومريحة */
+.quest-item {
+    background: var(--popup-item-bg);
+    border: 1px solid var(--popup-item-border);
+    padding: 1rem; /* مساحة داخلية كافية */
+    border-radius: 10px; /* حواف أكثر دائرية */
+    box-shadow: var(--shadow-md); /* ظل أكبر قليلاً للتمييز */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column; /* العناصر داخل المهمة تكون عمودية */
+    justify-content: space-between; /* توزيع المحتوى بشكل جيد */
+    min-height: 120px; /* ارتفاع أدنى لجعلها موحدة */
+    position: relative; /* لإضافة Badge لاحقاً مثلاً */
+    overflow: hidden; /* لمنع المحتوى من الخروج */
+}
+
+.quest-item:hover {
+    transform: translateY(-3px); /* تأثير رفع بسيط */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-light); /* تغيير لون الحدود عند التحويم */
+}
+
+/* عنوان المهمة */
+.quest-item h3 {
+    margin: 0 0 0.5rem 0; /* مسافة سفلية */
+    color: var(--color-text-dark); /* لون أغمق قليلاً للعنوان */
+    font-size: 1.15em; /* حجم أكبر قليلاً */
+    font-weight: 700; /* خط سميك */
+    line-height: 1.3;
+}
+
+/* وصف المهمة */
+.quest-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--color-light-gray);
+    flex-grow: 1; /* السماح للوصف بأخذ المساحة المتاحة */
+    margin-bottom: 0.8rem;
+}
+
+/* تقدم المهمة (مثل 5/10) */
+.quest-progress {
+    font-size: 0.95em; /* حجم أكبر قليلاً */
+    color: var(--color-accent); /* لون جذاب للتقدم (يمكن أن يكون أخضر مثلاً) */
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+/* زر المكافأة أو إكمال المهمة */
+.quest-item .claim-reward-btn {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.7rem 1.2rem; /* تكبير حجم الزر قليلاً */
+    border: none;
+    border-radius: 8px; /* حواف أكثر دائرية */
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: bold;
+    margin-top: 1rem; /* مسافة أكبر من الأسفل */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    align-self: flex-end; /* لجعله في نهاية العنصر من اليمين */
+}
+
+.quest-item .claim-reward-btn:hover {
+    background-color: var(--color-secondary-dark); /* لون أغمق عند التحويم */
+    transform: translateY(-1px); /* تأثير رفع خفيف عند التحويم */
+}
+
+.quest-item .claim-reward-btn:disabled {
+    background-color: var(--color-gray-dark); /* لون رمادي عند التعطيل */
+    color: var(--color-light-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none; /* إزالة تأثير التحويم عند التعطيل */
+    box-shadow: none;
+}
+
+/* أنماط للمهمة المكتملة */
+.quest-item.completed {
+    background: var(--color-green-light); /* خلفية خضراء فاتحة للمهمة المكتملة */
+    border-color: var(--color-green); /* حدود خضراء */
+    opacity: 0.8;
+    filter: grayscale(20%); /* جعلها باهتة قليلاً */
+}
+
+.quest-item.completed .claim-reward-btn {
+    background-color: var(--color-green-dark); /* زر أخضر داكن للمكافأة المجمعة */
+    cursor: default;
+    pointer-events: none; /* لمنع النقر عليها بعد التجميع */
+}
+
+/* أيقونات داخل الأنماط */
+.quests-section h3 .material-symbols-outlined,
+#quests-popup h2 .material-symbols-outlined {
+    font-size: 1.5em; /* حجم أكبر للأيقونات */
+    color: var(--color-accent); /* لون الأيقونات */
+}
+
+/* --- */
+
+/* ---------------------------------- Settings Popup Specific Styles ---------------------------------- */
+
+/* قم بتخصيص هذا ليكون خاصًا بنافذة الإعدادات */
+#settings-popup.popup {
+    /* يمكنك إضافة أنماط خاصة إذا كنت تريد أن تختلف نافذة الإعدادات عن غيرها */
+    /* background: var(--popup-bg-color); */
+    /* border-color: var(--color-accent); */
+}
+
+/* عنوان نافذة الإعدادات */
+#settings-popup h2 {
+    /* يستخدم نفس نمط عناوين الـ popup العامة */
+    /* color: var(--popup-header-color); */
+}
+
+/* حاوية خيارات الإعدادات */
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* عنصر الإعداد الفردي (مثل زر تبديل أو شريط تمرير) */
+.setting-item {
+    background: var(--popup-item-bg);
+    border: 1px solid var(--popup-item-border);
+    padding: 0.9rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.setting-item label {
+    font-size: 1em;
+    color: var(--color-text);
+    flex-grow: 1; /* لتوسيع Label */
+    margin-right: 10px; /* مسافة بين Label والعنصر التفاعلي */
+}
+
+/* أنماط أزرار التبديل (Toggles) - مثال بسيط */
+.setting-item .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--color-primary);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(16px);
+}
+/* في ملف style.css */
+
+
+/* أنماط أزرار العمل داخل الإعدادات (مثل "حفظ" أو "إعادة تعيين") */
+.settings-action-btn {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s ease;
+    align-self: center; /* توسيط الزر إذا كان داخل flex column */
+}
+
+.settings-action-btn:hover {
+    background-color: #21a660; /* لون أغمق عند التحويم */
+}
+
+/* أنماط أشرطة التمرير (Sliders) - مثال بسيط */
+.setting-item input[type="range"] {
+    width: 120px; /* يمكنك تعديل العرض حسب الحاجة */
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.setting-item input[type="range"]:hover {
+    opacity: 1;
+}
+
+.setting-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.setting-item input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    cursor: grab;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* أنماط شريط التمرير لقائمة المهام */
+#quests-list::-webkit-scrollbar {
+    width: 8px;
+}
+#quests-list::-webkit-scrollbar-track {
+    background: rgba(var(--color-surface-rgb), 0.2);
+    border-radius: 4px;
+}
+#quests-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary);
+    border-radius: 4px;
+}
+#quests-list::-webkit-scrollbar-thumb:hover {
+    background-color: #2980b9;
+}
+
+/* Special styling for Top 3 players */
+.leaderboard-item.top-1 {
+    background: linear-gradient(to right, #FFD700, #FFC107); /* Gold gradient */
+    color: #333; /* Darker text for contrast */
+    transform: scale(1.06); /* Larger scale */
+    border: 4px solid #FBC02D; /* Darker gold border */
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.7), inset 0 0 10px rgba(0,0,0,0.2); /* Stronger glow */
+    z-index: 5; /* Bring to front */
+}
+.leaderboard-item.top-1 .rank-number,
+.leaderboard-item.top-1 .player-id-snippet {
+    color: #2c3e50; /* Dark text */
+    text-shadow: none;
+}
+.leaderboard-item.top-1 .player-stats { color: #555; }
+.leaderboard-item.top-1 .player-avatar { border-color: #2c3e50; box-shadow: none; }
+.leaderboard-item.top-1 .stat-level i,
+.leaderboard-item.top-1 .stat-gold i { color: #2c3e50; }
+
+
+.leaderboard-item.top-2 {
+    background: linear-gradient(to right, #B0BEC5, #CFD8DC); /* Silver gradient */
+    color: #333;
+    transform: scale(1.04);
+    border: 4px solid #90A4AE;
+    box-shadow: 0 0 20px rgba(176, 190, 197, 0.6), inset 0 0 8px rgba(0,0,0,0.15);
+    z-index: 4;
+}
+.leaderboard-item.top-2 .rank-number,
+.leaderboard-item.top-2 .player-id-snippet {
+    color: #2c3e50;
+    text-shadow: none;
+}
+.leaderboard-item.top-2 .player-stats { color: #555; }
+.leaderboard-item.top-2 .player-avatar { border-color: #2c3e50; box-shadow: none; }
+.leaderboard-item.top-2 .stat-level i,
+.leaderboard-item.top-2 .stat-gold i { color: #2c3e50; }
+
+
+.leaderboard-item.top-3 {
+    background: linear-gradient(to right, #BF8B5B, #CD7F32); /* Bronze gradient */
+    color: #333; /* Dark text for better readability on bronze */
+    transform: scale(1.02);
+    border: 4px solid #A16A34;
+    box-shadow: 0 0 15px rgba(205, 127, 50, 0.5), inset 0 0 6px rgba(0,0,0,0.1);
+    z-index: 3;
+}
+.leaderboard-item.top-3 .rank-number,
+.leaderboard-item.top-3 .player-id-snippet {
+    color: #2c3e50; /* Dark text */
+    text-shadow: none;
+}
+.leaderboard-item.top-3 .player-stats { color: #555; }
+.leaderboard-item.top-3 .player-avatar { border-color: #2c3e50; box-shadow: none; }
+.leaderboard-item.top-3 .stat-level i,
+.leaderboard-item.top-3 .stat-gold i { color: #2c3e50; }
+
+
+/* Scrollbar styling for leaderboard list */
+.leaderboard-list::-webkit-scrollbar {
+    width: 10px; /* Wider scrollbar */
+}
+
+.leaderboard-list::-webkit-scrollbar-track {
+    background: rgba(var(--color-surface-rgb), 0.3); /* Lighter track */
+    border-radius: 10px;
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb {
+    background: var(--color-secondary); /* Secondary color for thumb */
+    border-radius: 10px;
+    border: 2px solid rgba(var(--color-surface-rgb), 0.2); /* Subtle border for thumb */
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb:hover {
+    background: #2980b9; /* Darker secondary on hover */
+}
+.gradient-title {
+  background: linear-gradient(90deg, #4CAF50, #00BCD4, #E91E63); /* أخضر -> سماوي -> وردي */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+#left-buttons {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 10;
+}
+
+
+/* ❌ تم حذف هذه الكلاسات إذا لم تكن مستخدمة، أو يمكن تعديلها لـ Modals أخرى في مكان عام. */
+/* .ranking-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 2px solid #444;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.player-text {
+  font-size: 16px;
+} */
+.shop-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.shop-popup.hidden {
+    display: none;
+}
+
+.shop-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+    position: relative;
+    animation: popupFadeIn 0.4s ease;
+}
+
+.shop-content h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.soon-text {
+    font-size: 1.2rem;
+    color: #777;
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+.close-btn:hover {
+    color: #000;
+}
+
+@keyframes popupFadeIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+/* Media Queries for larger screens (e.g., tablets and desktops) */
+@media (min-width: 768px) {
+    .modal-content {
+        padding: 3rem; /* More padding on larger screens */
+    }
+
+    .modal-close-button {
+        font-size: 32px; /* Larger close button */
+        top: 20px;
+        right: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 2.5em; /* Even larger title */
+    }
+
+    .leaderboard-tab {
+        padding: 15px 25px; /* Even larger tabs */
+        font-size: 1.25em;
+    }
+
+    .leaderboard-item {
+        padding: 15px 25px; /* More padding for list items */
+    }
+
+    .rank-number {
+        font-size: 1.8em; /* Larger rank number */
+        width: 60px; /* Wider for better alignment */
+    }
+
+    .player-avatar {
+        width: 55px; /* Larger avatar */
+        height: 55px;
+        border-width: 4px; /* Thicker border */
+    }
+
+    .player-id-snippet {
+        font-size: 1.2em;
+    }
+
+    .player-stats {
+        font-size: 1em;
+    }
+}
+
+
+.modal {
+    display: none; /* مخفي في البداية */
+    position: fixed; /* فوق كل حاجة */
+    z-index: 1000; /* أعلى z-index */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* لو المحتوى كبير يعمل سكرول */
+    background-color: rgba(0,0,0,0.4); /* خلفية سوداء شفافة */
+    justify-content: center; /* للسنترة الأفقية */
+    align-items: center;   /* للسنترة الرأسية */
+}
+
+.modal-content {
+    background-color: #3F51B5;
+    margin: 15% auto; /* للسنترة (يمكن إزالتها إذا استخدمت justify-content/align-items في المودال) */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* عرض المودال */
+    max-width: 500px; /* أقصى عرض */
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#notifications-list {
+    margin-top: 20px;
+    max-height: 300px; /* أقصى ارتفاع لقائمة الإشعارات */
+    overflow-y: auto; /* سكرول لو الإشعارات كتير */
+}
+
+.notification-item {
+    background-color: #3F51B5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.notification-item.unread {
+    background-color: #e0f2f7; /* لون مميز للإشعارات الجديدة */
+    font-weight: bold;
+    border-left: 5px solid #2196F3; /* شريط جانبي أزرق */
+}
+
+.notification-item h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.notification-item p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.notification-item .timestamp {
+    font-size: 0.8em;
+    color: #999;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.notification-item .reward-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/* أزرار اللعبة العامة */
+.game-button {
+    background-color: #007BFF; /* لون زر افتراضي */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* تصميم أيقونة الجرس والبادج */
+#notifications-button {
+    position: relative; /* عشان الـ badge يكون مكانه صح */
+}
+
+.badge {
+    background-color: #f44336; /* لون أحمر للإشعارات الجديدة */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: none; /* هيظهر بس لو فيه إشعارات مش مقروءة */
+}
+
+/* تصميم المودال */
+.modal {
+    display: none; /* مخفي في البداية */
+    position: fixed; /* فوق كل حاجة */
+    z-index: 1000; /* أعلى z-index */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* لو المحتوى كبير يعمل سكرول */
+    background-color: rgba(0,0,0,0.4); /* خلفية سوداء شفافة */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #2196F3;
+    margin: 15% auto; /* للسنترة */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* عرض المودال */
+    max-width: 500px; /* أقصى عرض */
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#notifications-list {
+    margin-top: 20px;
+    max-height: 300px; /* أقصى ارتفاع لقائمة الإشعارات */
+    overflow-y: auto; /* سكرول لو الإشعارات كتير */
+}
+
+.notification-item {
+    background-color: #2196F3;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.notification-item.unread {
+    background-color: #e0f2f7; /* لون مميز للإشعارات الجديدة */
+    font-weight: bold;
+    border-left: 5px solid #2196F3; /* شريط جانبي أزرق */
+}
+
+.notification-item h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.notification-item p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.notification-item .timestamp {
+    font-size: 0.8em;
+    color: #999;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.notification-item .reward-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ---------------------------------- General Element Styles ---------------------------------- */
+.tube::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-text-rgb), 0) 0%,
+        rgba(var(--color-text-rgb), 0.08) 20%, /* أخف */
+        rgba(var(--color-text-rgb), 0.2) 50%, /* أخف */
+        rgba(var(--color-text-rgb), 0.08) 80%, /* أخف */
+        rgba(var(--color-text-rgb), 0) 100%
+    );
+    filter: blur(1.5px); /* ضباب أقل */
+    opacity: 0.6; /* شفافية أقل */
+    pointer-events: none;
+}
+
+/* ستايل زر مكافأة كل 4 ساعات الجديد */
+.hourly-reward-btn {
+    background-color: #4CAF50; /* لون أخضر جذاب */
+    color: white;
+    border: 1px solid #388E3C;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.5s ease; /* أضف opacity للانتقال السلس */
+    width: 160px; /* يمكن تعديل العرض */
+
+    opacity: 0; /* يبدأ الزر مخفيًا تمامًا */
+    pointer-events: none; /* يمنع التفاعل معه وهو مخفي */
+    transform: translateY(10px); /* تأثير بسيط عند الظهور */
+}
+
+.hourly-reward-btn.available {
+    opacity: 1; /* يظهر عندما يكون متاحًا */
+    pointer-events: auto; /* يسمح بالتفاعل معه */
+    transform: translateY(0); /* يعود لمكانه الأصلي */
+}
+
+.hourly-reward-btn:hover {
+    background-color: var(--color-primary); /* استخدام متغير اللون الأساسي */
+    transform: translateY(-2px);
+}
+
+.hourly-reward-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* إعادة ضبط الأنماط */
+body {
+    /* تم تغيير الخلفية المتدرجة المتحركة إلى لون واحد ثابت */
+    background-color: var(--color-background); /* لون خلفية موحد */
+    color: var(--color-text);
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: var(--gap-base);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow-y: auto; /* السماح بالتمرير الرأسي إذا زاد المحتوى */
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* إزالة الأنميشن الخاص بالخلفية */
+@keyframes gradient-animation {
+    /* لا يوجد تأثير هنا بعد الآن */
+}
+
+/* إزالة تأثيرات التوهج الثقيلة لتحسين الأداء */
+body::before, body::after, .game-container::before {
+    display: none;
+}
+
+/* تخطيط اللعبة الرئيسي */
+#game-container {
+    width: 100%;
+    max-width: 600px;
+    margin: var(--gap-base) auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-base);
+    position: relative;
+    flex-grow: 1;
+}
+
+/* ---------------------------------- Header Section - Mobile Optimized - Lighter ---------------------------------- */
+.game-header {
+    /* استخدام الصورة كخلفية للهيدر فقط */
+    background-image: url('https://i.postimg.cc/QtJYK6Gv/file-00000000d51862469b3ddaac722346d5.png'); /* رابط الصورة */
+    background-size: cover;
+    background-position: center 20%; /* تعديل لتركيز الصورة */
+    background-repeat: no-repeat;
+    border-radius: var(--border-radius);
+    padding: 1rem; /* زيادة البادينج */
+    margin: var(--gap-base) auto; /* توسيط الهيدر مع مسافة من الأعلى والأسفل */
+    box-shadow: var(--shadow-sm); /* ظل أخف */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - var(--gap-base) * 2); /* عرض كامل مع هامش جانبي */
+    max-width: 700px; /* أقصى عرض ليكون مناسبًا للشاشات الكبيرة */
+    box-sizing: border-box;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3); /* حدود أكثر وضوحاً */
+    position: relative;
+    overflow: hidden;
+    min-height: 120px; /* ارتفاع أدنى أقل للهيدر */
+    animation: header-fade-in 0.8s ease-out; /* تأثير دخول */
+}
+
+/* NEW: Header elements with transparent backgrounds for clarity - Lighter */
+.game-header h1 {
+    color: var(--color-text); /* لون النص العادي ليتناسب مع الصورة */
+    font-size: 1.3rem;
+    margin: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-basis: 100%;
+    text-align: center;
+    justify-content: center;
+    /* NEW: Subtle background for text readability over image - Lighter */
+    background: rgba(var(--color-background-rgb), 0.3); /* خلفية أكثر شفافية */
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    backdrop-filter: blur(1.5px); /* ضباب خفيف جداً */
+}
+.game-header h1 i {
+    color: var(--color-accent);
+    font-size: 1.1em;
+}
+
+.stats-container {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.stat-item {
+    /* تم تغيير ألوان خانات الإحصائيات لتبدو أجمل */
+    background: rgba(var(--color-primary-rgb), 0.15); /* لون بنفسجي شفاف فاتح */
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3); /* حدود بنفسجية أغمق قليلاً */
+    color: var(--color-text);
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 clamp(70px, 20%, 120px);
+    min-width: 0;
+    box-shadow: var(--shadow-sm); /* ظل أخف */
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(2px); /* ضباب خفيف */
+}
+
+.stat-item i {
+    color: var(--color-secondary);
+    margin-right: 0.3rem;
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+}
+
+/* تحسين زر المهام - Lighter */
+.quest-btn, .settings-btn {
+    /* استخدام تدرج لوني لجذب الانتباه */
+    background: linear-gradient(45deg, var(--color-secondary), #87CEEB); /* تدرج أخف */
+    color: white; /* نص أبيض لتباين أفضل */
+    border: 1px solid rgba(var(--color-secondary-rgb), 0.5); /* حدود بلون ثانوي شفاف */
+    padding: 0.6rem 0.9rem; /* زيادة البادينج */
+    border-radius: 7px; /* زوايا أكثر استدارة */
+    font-size: 0.9em; /* حجم خط أكبر */
+    cursor: pointer;
+    transition: all 0.3s ease; /* انتقال سلس لكل الخصائص */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem; /* مسافة أكبر بين الأيقونة والنص */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* ظل أقوى */
+    margin: 0.3rem 0.15rem;
+    min-width: 80px; /* عرض أدنى أكبر */
+    touch-action: manipulation;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2); /* ظل خفيف للنص */
+}
+
+.quest-btn:hover, .settings-btn:hover {
+    background: linear-gradient(45deg, #34A898, var(--color-secondary)); /* عكس التدرج عند التحويم */
+    transform: translateY(-2px) scale(1.01); /* رفع وتكبير أقل */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* ظل أقوى بكثير */
+}
+
+/* ---------------------------------- Tubes Container - Optimized for Touch - Lighter ---------------------------------- */
+#tubes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--tube-width-base), 1fr));
+    gap: var(--gap-base);
+    padding: var(--gap-base) 0.4rem;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    min-height: calc(var(--tube-height-base) + 1.5rem);
+}
+
+.tube {
+    width: var(--tube-width-base);
+    height: var(--tube-height-base);
+    /* Plastic Bottle Look - Lighter */
+    background: var(--cracked-tube-bg); /* استخدام متغير موحد */
+    border-radius: 0 0 calc(var(--tube-width-base) / 2) calc(var(--tube-width-base) / 2); /* قاعدة دائرية بالكامل */
+    border: 2px solid var(--cracked-tube-border); /* استخدام متغير موحد */
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 0.3rem 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(var(--color-text-rgb), 0.05), /* توهج داخلي خفيف جداً */
+                0 2px 8px rgba(0, 0, 0, 0.08), /* ظل خارجي ناعم وأخف */
+                inset 0 -2px 4px rgba(0, 0, 0, 0.05); /* ظل سفلي داخلي لمحاكاة العمق - أخف */
+    margin: 0 auto;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(3px); /* تأثير ضباب زجاجي أقل قوة وأكثر نعومة */
+    /* NEW: إضافة تدرج خفيف لتحسين المظهر ثلاثي الأبعاد */
+    background: linear-gradient(to top, var(--cracked-tube-bg) 0%, rgba(var(--color-text-rgb), 0.03) 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), /* ظل خارجي أنيق */
+                inset 0 0 15px rgba(var(--color-text-rgb), 0.05), /* توهج داخلي علوي خفيف */
+                inset 0 -5px 10px rgba(0, 0, 0, 0.05); /* ظل داخلي سفلي لزيادة العمق */
+}
+/* إخفاء نص زر المهام (Quests Button) */
+.quest-btn span[data-lang-key="quests_button"] {
+    display: none;
+}
+
+/* إخفاء نص زر الرانك (Rankings Button) */
+#rankings-button span[data-lang-key="rankings_text"] {
+    display: none;
+}
+
+/* إخفاء نص زر الإعدادات (Settings Button) */
+.settings-btn span[data-lang-key="settings_button"] {
+    display: none;
+}
+
+/* تعديلات عامة لبعض الأزرار إذا لزم الأمر لجعل الأيقونات تتوسط */
+/* هذا قد تحتاج لتعديله بناءً على تصميمك الحالي */
+.game-button span.material-symbols-outlined,
+.quest-btn span.material-symbols-outlined,
+.settings-btn span.material-symbols-outlined {
+    margin: 0; /* إزالة أي هوامش قد تزاح الأيقونة */
+    padding: 0; /* إزالة أي حشوات قد تزاح الأيقونة */
+    /* إذا كانت الأيقونة لا تتوسط، قد تحتاج لإضافة: */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 100%; */
+    /* height: 100%; */
+}
+/* ملف: styles.css */
+
+/* -------------------------------------- */
+/* 1. إخفاء النصوص (كما طلبت سابقًا) */
+/* -------------------------------------- */
+.quest-btn span[data-lang-key="quests_button"],
+#rankings-button span[data-lang-key="rankings_text"],
+.settings-btn span[data-lang-key="settings_button"],
+#notifications-button span[data-lang-key="notifications_button"] { /* أضف زر الإشعارات أيضًا لإخفاء نصه */
+    display: none;
+}
+
+/* -------------------------------------- */
+/* 2. تنسيق الهيدر العام */
+/* -------------------------------------- */
+.game-header {
+    display: flex; /* تفعيل Flexbox للعناصر الرئيسية */
+    justify-content: space-between; /* توزيع العناصر على الأطراف */
+    align-items: center; /* محاذاة رأسية في المنتصف */
+    width: 100%;
+    padding: 8px 10px; /* تقليل البادنج للشاشات الصغيرة */
+    box-sizing: border-box;
+    background-color: #2b2b2b; /* خلفية داكنة للهيدر */
+    color: #eee; /* لون نصوص الهيدر */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* ظل خفيف */
+    flex-wrap: wrap; /* السماح للعناصر بالنزول لسطر جديد إذا لم تكف المساحة */
+    gap: 10px; /* مسافة بين المجموعات الرئيسية في الهيدر */
+}
+
+/* -------------------------------------- */
+/* 3. تنسيق مجموعات الإحصائيات والأزرار داخل الهيدر */
+/* -------------------------------------- */
+.stats-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* مسافة أقل بين عناصر الإحصائيات (الذهب، الليفل) */
+}
+
+.stats-container .stat-item {
+    font-size: 0.9em; /* تصغير حجم خط الإحصائيات */
+    white-space: nowrap; /* منع النص من النزول لسطر جديد */
+}
+.stats-container .stat-item .material-symbols-outlined {
+    font-size: 1.2em; /* حجم الأيقونات في الإحصائيات */
+}
+
+.stats-container.stats-right {
+    /* للحفاظ على ترتيب الليفل مع باقي أزرار اليمين */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* مسافة أقل بين أزرار اليمين */
+    /* بما أن الليفل موجود هنا، سنحتاج لضبطه */
+}
+
+/* -------------------------------------- */
+/* 4. تنسيق عنوان اللعبة (Ball Puzzle Saga) */
+/* -------------------------------------- */
+.game-header h1 {
+    font-size: 1.4em; /* تصغير حجم الخط ليتناسب مع الشاشات الصغيرة */
+    margin: 0; /* إزالة الهوامش التلقائية */
+    text-align: center;
+    white-space: nowrap; /* منع النص من النزول لسطر جديد */
+    overflow: hidden; /* إخفاء أي نص زائد */
+    text-overflow: ellipsis; /* إضافة "..." للنص الزائد */
+    flex-grow: 1; /* يسمح له بأخذ المساحة المتاحة ودفع العناصر الأخرى */
+    order: 2; /* ترتيبه ليكون في المنتصف، بعد Gold وقبل أزرار اليمين */
+    min-width: 120px; /* عرض أدنى لضمان ظهور العنوان */
+}
+
+/* -------------------------------------- */
+/* 5. تنسيق الأزرار (المهام، الإشعارات، الرانك، الإعدادات) */
+/* -------------------------------------- */
+.game-header .game-button,
+.game-header .quest-btn,
+.game-header .settings-btn {
+    min-width: 45px; /* عرض أدنى أصغر للأزرار */
+    height: 45px; /* ارتفاع أصغر للأزرار */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* لجعل الأزرار دائرية بالكامل */
+    background-color: #4a90e2; /* لون أزرق جذاب للأزرار */
+    color: white; /* لون الأيقونات */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* ظل خفيف ليعطي عمق */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* تأثير عند الضغط/التمرير */
+    flex-shrink: 0; /* يمنع الأزرار من الانكماش أكثر من اللازم */
+}
+
+.game-header .game-button:hover,
+.game-header .quest-btn:hover,
+.game-header .settings-btn:hover {
+    background-color: #357bd8; /* لون أغمق عند التمرير */
+    transform: translateY(-2px); /* تأثير رفع بسيط */
+}
+
+/* -------------------------------------- */
+/* 6. تحكم دقيق في أماكن الأزرار (بناءً على HTML الحالي) */
+/* -------------------------------------- */
+
+/* وضع زر المهام بجانب Gold Display (إذا أردت ذلك) */
+/* حاليًا في الـ HTML اللي أنت أرفقته، زر المهام موجود مع أزرار اليمين */
+/* إذا أردت نقله بجانب الذهب، يجب أن تنقله يدويًا في الـ HTML داخل .stats-container الأول */
+/* مثال لو نقلته: */
+/* .stats-container:first-child .quest-btn { margin-right: 10px; } */
+
+/* زر الرانك في نص الهيدر (مع الـ HTML الحالي، هو آخر زر في stats-right) */
+/* لجعله في المنتصف فعليًا بدون تعديل HTML، الأمر صعب جداً مع الترتيب الحالي */
+/* الحل الأفضل كان بتعديل الـ HTML كما اقترحت سابقًا */
+/* لكن مع الـ HTML الحالي، ممكن نعدل الـ order لكن لن يكون في المنتصف تماماً إلا لو كان الـ h1 صغير جداً */
+#rankings-button {
+    order: 3; /* محاولة لوضعه بعد عنوان اللعبة */
+    /* هذا لا يضمن المنتصف بالضبط بسبب توزيع Flexbox للعناصر الأخرى */
+}
+
+
+/* زر الإعدادات أقصى نقطة في البانر (سيكون آخر عنصر في stats-right) */
+.settings-btn {
+    order: 5; /* لجعله في نهاية صف الأزرار على اليمين */
+}
+
+
+/* أزرار الإشعارات والمهام تكون في أماكن جيدة */
+/* مع الترتيب الحالي لـ HTML، المهام والإشعارات والرانك والإعدادات كلها في stats-container stats-right */
+/* سنرتبهم باستخدام order property */
+#notifications-button {
+    order: 4; /* قبل الإعدادات وبعد الرانك */
+}
+
+.quest-btn { /* زر المهام */
+    order: 6; /* لو عايز يكون في أقصى اليمين بعد الإعدادات */
+    /* أو order: 1; لو عايز تنقله لأقصى اليسار مع الذهب (وهنا يجب تغيير الـ HTML) */
+}
+
+
+/* -------------------------------------- */
+/* 7. تحسينات على العناصر الأخرى في الواجهة */
+/* -------------------------------------- */
+.top-controls-panel {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* مسافة بين أزرار التحكم العلوية */
+    padding: 10px;
+    flex-wrap: wrap; /* السماح للأزرار بالنزول لسطر جديد */
+}
+
+.top-controls-panel button {
+    padding: 8px 12px; /* تقليل البادنج للأزرار */
+    font-size: 0.9em; /* تصغير حجم الخط */
+    border-radius: 5px; /* حواف دائرية للأزرار */
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.top-controls-panel button .material-symbols-outlined {
+    font-size: 1.2em; /* حجم الأيقونات */
+}
+
+#skip-button {
+    /* ممكن تخليه في أسفل الشاشة أو في زاوية معينة */
+    position: fixed; /* يثبته في مكانه حتى مع التمرير */
+    bottom: 15px; /* مسافة من الأسفل */
+    right: 15px; /* مسافة من اليمين */
+    z-index: 1000; /* يضمن ظهوره فوق باقي العناصر */
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 8px;
+    background-color: #ffc107; /* لون مميز */
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------------------------------- */
+/* 8. Media Queries للاستجابة على أحجام الشاشات المختلفة */
+/* -------------------------------------- */
+
+@media (max-width: 600px) {
+    /* خصائص تطبق فقط على الشاشات التي عرضها 600 بكسل أو أقل */
+    .game-header {
+        flex-direction: row; /* أبقيها في صف واحد قدر الإمكان */
+        justify-content: space-around; /* توزيع العناصر بالتساوي */
+        padding: 5px 8px; /* تقليل البادنج أكثر */
+    }
+
+    .game-header h1 {
+        font-size: 1.2em; /* تصغير حجم العنوان أكثر */
+        min-width: unset; /* إلغاء الحد الأدنى للعرض */
+        order: 2; /* تأكيد ترتيبه */
+    }
+
+    .game-header .game-button,
+    .game-header .quest-btn,
+    .game-header .settings-btn {
+        min-width: 40px; /* أصغر حجم للأزرار */
+        height: 40px;
+    }
+
+    .stats-container .stat-item {
+        font-size: 0.8em; /* أصغر حجم لخط الإحصائيات */
+    }
+
+    .top-controls-panel {
+        padding: 8px;
+        gap: 5px;
+    }
+
+    .top-controls-panel button {
+        padding: 6px 10px; /* بادنج أصغر لأزرار التحكم */
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 400px) {
+    /* خصائص لأصغر الشاشات */
+    .game-header {
+        flex-wrap: wrap; /* السماح بالنزول لسطر جديد لو ضاقت المساحة جداً */
+        justify-content: center; /* توسيط العناصر لو نزلت لسطر جديد */
+        padding: 5px;
+    }
+
+    .game-header h1 {
+        order: -1; /* لجعل العنوان في الأعلى لو الشاشة ضاقت جداً */
+        width: 100%; /* يأخذ عرض الشاشة بالكامل */
+        margin-bottom: 5px; /* مسافة من أسفل العنوان */
+    }
+
+    .stats-container, .stats-container.stats-right {
+        gap: 5px;
+        /* لو تريدهم يظهروا تحت العنوان */
+        /* width: 100%; */
+        /* justify-content: center; */
+    }
+
+    #skip-button {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+/* إضافة انعكاسات بلاستيكية - Lighter and more refined */
+.tube::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%; /* مساحة أكبر للانعكاس */
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-text-rgb), 0) 0%,
+        rgba(var(--color-text-rgb), 0.05) 15%, /* أخف وأكثر نعومة */
+        rgba(var(--color-text-rgb), 0.15) 50%, /* أخف */
+        rgba(var(--color-text-rgb), 0.05) 85%, /* أخف وأكثر نعومة */
+        rgba(var(--color-text-rgb), 0) 100%
+    );
+    filter: blur(1px); /* ضباب أقل وأكثر دقة */
+    opacity: 0.5; /* شفافية أقل للمسة أنيقة */
+    pointer-events: none;
+    z-index: 2; /* تأكد من ظهورها فوق العناصر الأخرى */
+}
+
+/* Light, subtle crack-like lines on tube edges - Lighter and less distracting */
+.tube::after { /* تغيير إلى after لتجنب التضارب مع before */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* استخدام خطوط أرفع وأكثر تباعداً */
+    background-image: linear-gradient(45deg, var(--cracked-line-color-light) 0.5px, transparent 0.5px),
+                      linear-gradient(-45deg, var(--cracked-line-color-light) 0.5px, transparent 0.5px);
+    background-size: 25px 25px; /* حجم أكبر لجعل الخطوط أقل كثافة */
+    background-position: 0 0, 12.5px 12.5px;
+    opacity: 0.03; /* شفافية عالية جداً لجعلها خفيفة جداً وغير مزعجة */
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tube:hover:not(.selected-tube), .tube:active:not(.selected-tube) {
+    transform: translateY(-4px) scale(1.02); /* رفع وتكبير أقل ليكون أكثر سلاسة */
+    box-shadow: inset 0 0 10px rgba(var(--color-text-rgb), 0.1), /* أخف */
+                0 6px 18px rgba(0, 0, 0, 0.2), /* ظل أنيق عند التحويم */
+                0 0 0 2px rgba(var(--color-primary-rgb), 0.3); /* توهج أساسي أنيق وأخف */
+}
+
+.tube.empty {
+    background: rgba(var(--color-background-rgb), 0.05); /* أفتح وأكثر شفافية ليتناسق مع المظهر الأنيق */
+    border: 1px dashed rgba(var(--color-light-gray), 0.1); /* أقل وضوحاً */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* ظل داخلي خفيف جداً */
+}
+
+.tube.selected-tube {
+    box-shadow: 0 0 0 3px var(--color-accent),
+                0 0 18px rgba(var(--color-accent-rgb), 0.7), /* توهج أقوى وأكثر وضوحاً عند الاختيار */
+                var(--shadow-sm),
+                inset 0 0 10px rgba(var(--color-text-rgb), 0.15); /* توهج داخلي ناعم */
+    transform: scale(1.03); /* تكبير أقل ليظل أنيقاً */
+}
+
+.tube.completed {
+    background: rgba(var(--color-secondary-rgb), 0.25); /* لون أخضر شفاف أكثر وضوحاً وتألقاً بعد الاكتمال */
+    border-color: rgba(var(--color-secondary-rgb), 0.6); /* أكثر وضوحاً */
+    box-shadow: 0 0 0 2px var(--color-secondary),
+                0 0 15px rgba(var(--color-secondary-rgb), 0.7), /* توهج أخضر قوي وجذاب */
+                inset 0 0 10px rgba(var(--color-text-rgb), 0.1); /* توهج داخلي ناعم */
+}
+
+/* إزالة تأثير الوميض لتحسين الأداء - تم الإبقاء عليه كما هو بناءً على طلبك السابق */
+@keyframes tube-completed-shine {
+    0% { box-shadow: 0 0 0 2px var(--color-secondary); }
+    50% { box-shadow: 0 0 0 4px var(--color-secondary); }
+    100% { box-shadow: 0 0 0 2px var(--color-secondary); }
+}
+
+/* في ملف style.css */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية شبه شفافة سوداء */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    z-index: 1000; /* تأكد من أنه يظهر فوق كل شيء آخر */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* (اختياري) أضف spinner للتحميل */
+.loading-spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية شبه شفافة سوداء */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    z-index: 1000; /* تأكد من أنه يظهر فوق كل شيء آخر */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* (اختياري) أضف spinner للتحميل */
+.loading-spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---------------------------------- Balls Design - Mobile Optimized - Lighter ---------------------------------- */
+.ball {
+    width: var(--ball-size-base);
+    height: var(--ball-size-base);
+    border-radius: 50%; /* كرة دائرية مثالية */
+    margin-bottom: 2px;
+    /* background-color: var(--ball-color-red); /* سيتم تجاوزها لاحقاً حسب اللون، يمكن إزالة هذه القيمة الافتراضية */
+    box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.15); /* ظل ناعم */
+    border: 1px solid rgba(var(--color-text-rgb), 0.08); /* حدود أخف */
+    position: relative;
+    overflow: hidden;
+    /* تحديث: إضافة z-index و transform للـ transition */
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.2s ease-out,
+                opacity 0.2s ease-out,
+                top 0.4s ease-out, /* لتأثير الارتداد أو السقوط */
+                left 0.4s ease-out; /* للسحب لو هتستخدمها */
+    z-index: 1; /* الوضع الافتراضي */
+}
+
+/* NEW: Consistent cracks using a single variable for a fragmented look */
+.ball:not(.locked)::after { /* تطبيق الشقوق فقط على الكرات غير المقفلة */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 80%, var(--cracked-fracture-color) 1px, transparent 1px),
+                      radial-gradient(circle at 80% 20%, var(--cracked-fracture-color) 1px, transparent 1px),
+                      radial-gradient(circle at 50% 50%, var(--cracked-fracture-color) 1px, transparent 1px),
+                      radial-gradient(circle at 10% 30%, var(--cracked-fracture-color) 1px, transparent 1px),
+                      radial-gradient(circle at 90% 70%, var(--cracked-fracture-color) 1px, transparent 1px);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: blur(0.4px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* NEW: Glow on hover/move (simulate cracked lines getting brighter) */
+.ball.moving, .ball:active { /* .ball:active for touch/click effect */
+    box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.2), /* الظل الأساسي */
+                0 0 8px var(--cracked-ball-shadow-glow), /* توهج نيون أبيض/فاتح أقوى - أخف */
+                0 0 12px var(--cracked-ball-shadow-glow); /* أخف */
+    transform: scale(1.06); /* تكبر 6% لحظة واحدة */
+}
+
+/* ألوان الكرات - NEW: Soft, solid colors with internal crack-like shadows (باستخدام الفئات بدلاً من inline styles) */
+.ball-red { background-color: var(--ball-color-red); }
+.ball-green { background-color: var(--ball-color-green); }
+.ball-blue { background-color: var(--ball-color-blue); }
+.ball-yellow { background-color: var(--ball-color-yellow); }
+.ball-purple { background-color: var(--ball-color-purple); }
+.ball-orange { background-color: var(--ball-color-orange); }
+.ball-pink { background-color: var(--ball-color-pink); }
+.ball-brown { background-color: var(--ball-color-brown); }
+.ball-cyan { background-color: var(--ball-color-cyan); }
+.ball-lime { background-color: var(--ball-color-lime); }
+
+/* تم حذف قواعد .ball[style*="color"]::after حيث تم توحيدها بقاعدة .ball::after العامة */
+
+/* الكلاس الخاص بتأثير الطفو */
+.ball.float-active {
+    transform: scale(1.15) translateY(-25px); /* تكبر وتطفو للأعلى أكثر */
+    box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.2),
+                0 0 15px var(--cracked-ball-shadow-glow), /* توهج أقوى */
+                0 0 25px var(--cracked-ball-shadow-glow);
+    z-index: 100; /* تظهر فوق كل حاجة */
+    position: relative; /* مهم عشان translateY يشتغل صح */
+}
+
+/* كلاس بداية الارتداد (للحظة ملامسة الأنبوب) */
+.ball.bounce-start {
+    transform: scale(0.98) translateY(5px); /* تنكمش قليلاً للأسفل */
+    transition: transform 0.1s ease-out; /* حركة سريعة جداً */
+}
+
+/* كلاس نهاية الارتداد (بعد الانكماش مباشرة) */
+.ball.bounce-end {
+    transform: scale(1) translateY(-3px); /* ترتد للأعلى قليلاً */
+    transition: transform 0.2s ease-in; /* حركة أبطأ للارتداد */
+}
+
+/* كلاس الثبات بعد الارتداد */
+.ball.bounced {
+    transform: scale(1) translateY(0);
+    transition: transform 0.1s ease-in; /* للرجوع للوضع الطبيعي */
+}
+
+/* ---------------------------------- Controls Section - Optimized for Taps - Lighter ---------------------------------- */
+.control-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 0.4rem;
+}
+
+.control-panel button {
+    background: rgba(var(--color-surface-rgb), 0.6); /* أخف */
+    color: var(--color-text);
+    border: 1px solid rgba(var(--color-text-rgb), 0.15); /* أخف */
+    padding: 0.5rem 0.7rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-shadow: var(--shadow-sm);
+    touch-action: manipulation;
+    backdrop-filter: blur(3px); /* أقل قوة */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.control-panel button:hover:not(:disabled), .control-panel button:active:not(:disabled) {
+    background: var(--color-primary);
+    transform: translateY(-1px); /* حركة أقل */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* ظل أخف */
+}
+
+.control-panel button:disabled {
+    background: rgba(85, 85, 85, 0.4); /* أغمق وشفاف أكثر عند التعطيل */
+    color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.5;
+    backdrop-filter: blur(1.5px);
+}
+
+/* ---------------------------------- Messages & Notifications - Lighter ---------------------------------- */
+#message {
+    text-align: center;
+    padding: 0.5rem 0.7rem;
+    margin: 0.7rem 0;
+    background: rgba(var(--color-surface-rgb), 0.7); /* خلفية رسائل شفافة - أخف */
+    border-radius: var(--border-radius);
+    width: calc(100% - 0.8rem);
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-sm); /* ظل أخف */
+    backdrop-filter: blur(3px); /* ضباب خفيف */
+    border: 1px solid rgba(var(--color-text-rgb), 0.1); /* أخف */
+}
+
+.error-message {
+    color: #ff3838;
+    background: rgba(var(--color-accent-rgb), 0.1); /* استخدام متغير RGB */
+    border: 1px solid #ff3838;
+}
+
+.shake-error {
+    animation: shake 0.3s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(1px); }
+    30%, 70% { transform: translateX(-1px); }
+    40%, 60% { transform: translateX(1px); }
+}
+
+.success-message {
+    color: #1abc9c;
+    background: rgba(var(--color-secondary-rgb), 0.1); /* استخدام متغير RGB */
+    border: 1px solid #1abc9c;
+}
+
+#loading-message {
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    background: rgba(var(--color-surface-rgb), 0.7); /* أخف */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm); /* أخف */
+    backdrop-filter: blur(3px); /* أخف */
+}
+
+#loading-message.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#achievement-badge {
+    bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    gap: 5px;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    background: rgba(var(--color-secondary-rgb), 0.7); /* خلفية شارة الإنجاز من لون ثانوي - أخف */
+    color: white;
+    box-shadow: 0 0 10px rgba(var(--color-secondary-rgb), 0.5); /* أخف */
+    backdrop-filter: blur(4px); /* أخف */
+}
+
+#achievement-badge.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ---------------------------------- Popups - Mobile Optimized and Themed - Lighter and Smaller ---------------------------------- */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--popup-bg-color, #2c3e50); /* خلفية داكنة وأنيقة */
+    border: 1px solid var(--popup-border-color, rgba(46, 204, 113, 0.3)); /* حدود خضراء فاتحة */
+    width: 90%; /* نسبة عرض أكبر */
+    max-width: 700px; /* جعلها أعرض للكمبيوتر */
+    height: auto; /* ارتفاع تلقائي ليناسب المحتوى */
+    padding: 1.5rem; /* مساحة داخلية أكبر */
+    border-radius: var(--border-radius, 12px); /* حواف أكثر دائرية */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* ظل أقوى وأكثر عمقاً */
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    display: flex; /* استخدام Flexbox للتخطيط الداخلي */
+    flex-direction: row; /* جعل المحتوى يترتب أفقياً */
+    flex-wrap: wrap; /* السماح للعناصر بالانتقال لسطر جديد إذا كانت كثيرة */
+    gap: 1.2rem; /* مسافة بين العناصر أفقياً وعمودياً */
+    backdrop-filter: blur(12px) brightness(0.8); /* تأثير زجاجي أقوى مع تعتيم */
+    color: var(--color-text, #ecf0f1); /* لون نص فاتح للتباين */
+    align-items: flex-start; /* محاذاة العناصر من الأعلى */
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup h2 {
+    font-size: 1.8rem; /* حجم أكبر للعنوان */
+    margin-bottom: 1.2rem; /* مسافة سفلية أكبر */
+    color: var(--popup-header-color, #2ecc71); /* لون أخضر فاتح للعناوين */
+    text-shadow: 0 0 8px rgba(46, 204, 113, 0.6); /* ظل نص أخضر */
+    text-align: center;
+    width: 100%; /* لجعل العنوان يأخذ عرض النافذة بالكامل */
+}
+
+.popup .close-btn {
+    position: absolute;
+    top: 15px; /* بعد عن الأعلى */
+    right: 15px; /* بعد عن اليمين */
+    font-size: 2rem; /* حجم أكبر لزر الإغلاق */
+    color: var(--color-light-gray, #bdc3c7); /* لون رمادي فاتح */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.popup .close-btn:hover {
+    color: var(--color-accent, #e74c3c); /* لون أحمر جذاب عند التحويم */
+    transform: rotate(180deg) scale(1.1); /* يدور ويكبر بشكل ملفت */
+}
+
+/* NEW: Themed input/selection elements inside popups (example for a list item) */
+.popup .popup-content-item {
+    background: var(--popup-item-bg, rgba(52, 73, 94, 0.7)); /* خلفية شفافة قليلاً للعناصر */
+    border: 1px solid var(--popup-item-border, rgba(46, 204, 113, 0.2));
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1 1 calc(50% - 1.2rem); /* لتظهر عنصرين في الصف الواحد مع مسافة بينهما */
+    min-width: 250px; /* ضمان عرض أدنى للعنصر */
+    color: var(--color-text, #ecf0f1);
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column; /* جعل محتوى العنصر طولياً */
+    align-items: flex-start;
+    gap: 0.6rem;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+  background-color: #2c3e50;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#rankings-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: right;
+}
+#rankings-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.popup .popup-content-item:hover {
+    background: rgba(46, 204, 113, 0.25); /* خلفية خضراء فاتحة عند التحويم */
+    transform: translateY(-3px); /* ارتفاع أعلى عند التحويم */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* ظل أقوى */
+}
+
+/* NEW: Themed buttons inside popups */
+.popup .button-group {
+    display: flex;
+    gap: 1rem; /* مسافة بين الأزرار */
+    width: 100%; /* لجعل مجموعة الأزرار تأخذ عرض النافذة بالكامل */
+    margin-top: 1.5rem; /* مسافة علوية من المحتوى */
+    justify-content: center; /* توسيط الأزرار */
+}
+
+.popup button:not(.close-btn) {
+    background: var(--color-secondary, #2ecc71); /* زر بلون أخضر جذاب */
+    color: white;
+    padding: 0.9rem 1.8rem; /* مساحة داخلية أكبر للأزرار */
+    border-radius: 9px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-sm, 0 2px 5px rgba(0,0,0,0.2));
+    flex-grow: 0; /* لا تجعلها تملأ المساحة تلقائياً */
+    min-width: 120px; /* عرض أدنى للزر */
+}
+
+.popup button:not(.close-btn):hover {
+    background: #27ae60; /* لون أخضر أغمق عند التحويم */
+    transform: translateY(-2px); /* ارتفاع أعلى قليلاً */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* ظل أقوى */
+}
+
+/* NEW: Themed categories/sections inside popups */
+.popup .section-title {
+    color: var(--color-secondary, #2ecc71); /* لون عنوان القسم بلون أخضر */
+    font-size: 1.3rem; /* حجم أكبر لعناوين الأقسام */
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(46, 204, 113, 0.4); /* خط أخضر فاتح */
+    padding-bottom: 0.4rem;
+    width: 100%; /* لجعل عنوان القسم يأخذ عرض النافذة بالكامل */
+    text-align: center; /* توسيط عنوان القسم */
+}
+
+/* المتغيرات اللونية (أضفها في ملف CSS الرئيسي أو في جذر المستند) */
+:root {
+    --color-primary-rgb: 46, 204, 113; /* For rgba usage */
+    --color-primary: #2ecc71; /* Emerald Green */
+    --color-secondary-rgb: 52, 152, 219; /* For rgba usage */
+    --color-secondary: #3498db; /* Peter River Blue */
+    --color-accent: #e74c3c; /* Alizarin Red */
+    --color-light-gray: #bdc3c7; /* Silver */
+    --color-text: #ecf0f1; /* Clouds white for general text */
+
+    --popup-bg-color: #2c3e50; /* Wet Asphalt */
+    --popup-border-color: rgba(46, 204, 113, 0.4);
+    --popup-header-color: #2ecc71;
+    --popup-item-bg: rgba(52, 73, 94, 0.7);
+    --popup-item-border: rgba(46, 204, 113, 0.3);
+
+    --border-radius: 12px;
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* ---------------------------------- Custom Scrollbar - Lighter ---------------------------------- */
+::-webkit-scrollbar {
+    width: 6px; /* شريط تمرير أضيق */
+}
+::-webkit-scrollbar-track {
+    background: rgba(var(--color-surface-rgb), 0.4); /* خلفية شريط التمرير شفافة - أخف */
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 6px;
+    border: 1px solid rgba(var(--color-text-rgb), 0.08); /* حدود خفيفة - أخف */
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #7b2e9d; /* لون أغمق عند التحويم */
+}
+
+/* ---------------------------------- Media Queries for Larger Screens ---------------------------------- */
+@media (min-width: 768px) {
+    :root {
+        --tube-width-base: 55px;
+        --tube-height-base: 180px;
+        --ball-size-base: 45px;
+        --gap-base: 0.8rem;
+    }
+
+    body {
+        padding: 1rem;
+    }
+
+    .game-header {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        min-height: 140px; /* إعادة ضبط الارتفاع للشاشات الكبيرة */
+    }
+
+    .game-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .stats-container {
+        margin-top: 0;
+    }
+
+    .stat-item {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .quest-btn, .settings-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    #tubes-container {
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+
+    .control-panel {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .popup {
+        padding: 1.2rem; /* بادينج أكبر للبوب أب */
+        max-width: 400px; /* عرض أكبر للبوب أب على الشاشات الكبيرة */
+    }
+
+    .popup h2 {
+        font-size: 1.6rem;
+    }
+
+    .popup .close-btn {
+        font-size: 1.8rem;
+    }
+}
+
+/* تحسينات الوصول */
+button:focus-visible, .tube:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px; /* إزاحة أكبر للتركيز */
+}
+
+/* تحسين الأداء */
+.tube, .ball, button, .popup {
+    will-change: transform, background, box-shadow; /* إضافة خصائص للتغيير لتحسين الأداء */
+}
+/* الأنماط الأساسية لـ level-display */
+#level-display {
+    font-size: 1.8em; /* حجم خط أكبر لجذب الانتباه */
+    font-weight: bold; /* لجعل الرقم بارزاً */
+    color: #FFD700; /* لون ذهبي أو مشرق لجذب العين، يمكنك تغييره */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* ظل نص لإضافة عمق */
+    padding: 2px 8px; /* مسافة داخلية حول الرقم */
+    border-radius: 5px; /* حواف مستديرة */
+    background-color: rgba(0, 0, 0, 0.3); /* خلفية شبه شفافة */
+    min-width: 30px; /* ضمان عرض أدنى لتبدو متناسقة */
+    text-align: center; /* توسيط النص */
+    display: inline-block; /* لتمكين خصائص العرض مثل min-width */
+}
+
+/* ---------------------------------------------------- */
+
+/* خيارات إضافية يمكنك تجربتها */
+
+/* 1. تأثير توهج خفيف (Light Glow Effect) */
+#level-display.glow {
+    box-shadow: 0 0 8px #FFD700, 0 0 15px #FFD700; /* توهج حول العنصر */
+    transition: all 0.3s ease-in-out; /* انتقال سلس عند التغيير */
+}
+
+/* 2. إطار مميز (Distinct Border) */
+#level-display.bordered {
+    border: 2px solid #EEE8AA; /* إطار بلون فاتح */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* ظل خفيف على الإطار */
+}
+
+/* 3. تأثير ثلاثي الأبعاد بسيط (Subtle 3D Effect) */
+#level-display.three-d {
+    background-image: linear-gradient(to bottom, #FFD700, #DAA520); /* تدرج لوني */
+    border-bottom: 2px solid #B8860B; /* خط سفلي لإظهار العمق */
+    border-right: 1px solid #B8860B;
+}
+
+/* 4. نمط فقاعة (Bubble Style) */
+#level-display.bubble {
+    background-color: #6A5ACD; /* لون بنفسجي أو أزرق */
+    color: #FFF;
+    border-radius: 50%; /* لجعلها دائرة */
+    width: 40px; /* عرض وارتفاع متساويان */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* 5. تأثير التكبير عند التمرير (Hover Scale) */
+#level-display:hover {
+    transform: scale(1.1); /* تكبير الرقم قليلاً عند مرور الماوس */
+    transition: transform 0.2s ease-out; /* حركة سلسة */
+}
